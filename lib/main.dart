@@ -27,15 +27,32 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Stack(
-                children: [
-              Container(child: Image.asset('hogwarts.jpg'),),
-                Container(child: Image.asset('hagrid.png'),)]),
-          )
+      body: Container(decoration: BoxDecoration(gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        stops: [
+          0.1,
+          0.7,
         ],
+        colors: [
+          Color(0xff002e4a),
+          Colors.black,
+        ],
+      )
+      ),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Stack(
+                  children: [
+                    Container(
+                      child: Image.asset(
+                          'assets/hogwarts.png'),),
+                    Container(child: Image.asset('assets/hagrid.png'),)]),
+            )
+          ],
+        ),
+
       ),
     );
   }
