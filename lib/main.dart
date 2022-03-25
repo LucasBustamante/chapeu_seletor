@@ -24,6 +24,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int cont = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           0.7,
         ],
         colors: [
-          Color(0xff002e4a),
+          Color(0xff0a324b),
           Colors.black,
         ],
       )
@@ -43,13 +45,31 @@ class _HomePageState extends State<HomePage> {
         child: Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: Stack(
-                  children: [
-                    Container(
-                      child: Image.asset(
-                          'assets/hogwarts.png'),),
-                    Container(child: Image.asset('assets/hagrid.png'),)]),
-            )
+              child: GestureDetector(
+                onTap: (){
+                  setState(() {
+                    cont ++;
+                  });
+                },
+                child: Stack(
+                    children: [
+                      Container(
+                        child: Image.asset(
+                            'assets/hogwarts.jpg'),),
+                        if (cont >= 1)
+                          Image.asset('assets/fala$cont.png'),
+                      if (cont == 3)
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MainHall()),
+                            );
+                          },
+                        )
+                      ]),
+              ),
+            ),
           ],
         ),
 
@@ -58,3 +78,55 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+class MainHall extends StatefulWidget {
+  const MainHall({Key? key}) : super(key: key);
+
+  @override
+  State<MainHall> createState() => _CommomRoomState();
+}
+
+class _CommomRoomState extends State<MainHall> {
+
+  int cont = 4;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          cont++;
+        });
+      },
+      child: Scaffold(
+        body: Center(child: Container(decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+              stops: [
+                0.1,
+                0.7,
+              ],
+              colors: [
+                Color(0xff658fe6),
+
+                Colors.black
+              ]
+          )
+        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                Stack(children: [
+                  Image.asset('assets/mainhall.png'),
+
+                  Image.asset('assets/fala$cont.png'),
+                  if (cont >= 6 && cont <= 9)
+                    Image.asset('assets/brazao$cont.png')
+                  else
+                    Image.asset('assets/chapeu.png'),
+                ]),
+            ],
+          ),)),
+      ),
+    );
+  }
+}
