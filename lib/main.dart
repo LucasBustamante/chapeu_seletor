@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 
 void main(){
   runApp(MyApp());
@@ -44,6 +46,7 @@ class _HomePageState extends State<HomePage> {
       ),
         child: Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Center(
               child: GestureDetector(
                 onTap: (){
@@ -53,10 +56,10 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: Stack(
                     children: [
-                      Container(
-                        child: Image.asset(
-                            'assets/hogwarts.jpg'),),
-                        if (cont >= 1)
+                          Container(
+                            child: Image.asset(
+                                'assets/hogwarts.jpg')),
+                      if (cont >= 1)
                           Image.asset('assets/fala$cont.png'),
                       if (cont == 3)
                         GestureDetector(
@@ -116,6 +119,7 @@ class _CommomRoomState extends State<MainHall> {
           child: Column(mainAxisAlignment: MainAxisAlignment.center,
             children: [
                 Stack(children: [
+
                   Image.asset('assets/mainhall.png'),
 
                   Image.asset('assets/fala$cont.png'),
@@ -123,6 +127,15 @@ class _CommomRoomState extends State<MainHall> {
                     Image.asset('assets/brazao$cont.png')
                   else
                     Image.asset('assets/chapeu.png'),
+                  if (cont == 11)
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Questions()),
+                        );
+                      },
+                    )
                 ]),
             ],
           ),)),
@@ -130,3 +143,36 @@ class _CommomRoomState extends State<MainHall> {
     );
   }
 }
+ class Questions extends StatefulWidget {
+   const Questions({Key? key}) : super(key: key);
+ 
+   @override
+   State<Questions> createState() => _QuestionsState();
+ }
+ 
+ class _QuestionsState extends State<Questions> {
+   @override
+   Widget build(BuildContext context) {
+     return Container(
+       decoration: BoxDecoration(gradient: LinearGradient(
+         begin: Alignment.topCenter,
+         end: Alignment.bottomCenter,
+         colors: [Colors.black,
+           Colors.purple],
+           stops: [
+             0.5,
+           0.9
+           ]
+       )),
+       child: Center(
+         child: Column(
+           mainAxisAlignment: MainAxisAlignment.center,
+         children: [
+           Image.asset('assets/pergaminho.png')
+         ],
+         ),
+       ),
+     );
+   }
+ }
+ 
